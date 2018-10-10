@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-6">
+      <h1>Registration Form</h1>
+      <form #registrationForm="ngForm" (onSubmit)="newUser()">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" required [(ngModel)]="model.email" name="email" #email="ngModel">
+          <div [hidden]="email.valid || email.pristine" class="alert alert-secondary">
+            Email is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id ="password" class="form-control" required [(ngModel)]="model.password" name="password" #password="ngModel">
+          <div [hidden]="password.valid || password.pristine" class="alert alert-secondary">
+            password is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Confirm Password</label>
+          <input type="password" id ="confirm_password" class="form-control" required name="confirm_password" ngModel #confirm_password="ngModel" >
+          <div [hidden]="confirm_password.valid || confirm_password.pristine" class="alert alert-secondary">
+            Confirmation is required
+          </div>
+          <div *ngIf="registrationForm.valid && (registrationForm.touched || registrationForm.dirty)" class="cross-validation-error-message alert alert-danger">
+              Confirmation Password cannot match Password ego.
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="form-control">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
